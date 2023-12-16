@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import AsideNavBar from '@/components/asideNavBar/asideNavBar'
 import './globals.css'
 import NavBar from '@/components/navBar/navBar'
+import Footer from '@/components/footer/footer'
 
 
 export const metadata: Metadata = {
@@ -28,8 +29,9 @@ export default function RootLayout({
                 <div className="flex pt-16 overflow-hidden bg-gray-50 dark:bg-gray-900">
                     <div id="main-content" className="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900 min-h-screen">
                         {children}
+                        <Footer/>
                     </div>
-                </div>    
+                </div>      
             </body>
         </html>
     )
