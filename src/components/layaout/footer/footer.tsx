@@ -3,23 +3,23 @@
 const footerLinks = [
     {
         tittle: 'Terms and conditions',
-        url: '#',
+        url: '/1',
     },
     {
         tittle: 'Privacy Policy',
-        url: '#',
+        url: '/2',
     },
     {
         tittle: 'Licensing',
-        url: '#',
+        url: '/3',
     },
     {
         tittle: 'Cookie Policy',
-        url: '#',
+        url: '/4',
     },
     {
         tittle: 'Contact',
-        url: '#',
+        url: '/5',
     },
 ]
 

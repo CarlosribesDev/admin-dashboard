@@ -18,8 +18,8 @@ interface MenuItemData {
 const menuItems: MenuItemData[] = [
     {route: '/', title: 'Home', icon: FaHome},
     {route: '/project', title: 'Proyectos', icon: AiOutlineFundProjectionScreen},
-    {route: '/', title: 'Mecanismos', icon: IoIosSettings },
-    {route: '/', title: 'Bombas', icon: GiElectric},
+    {route: '/mechanic', title: 'Mecanismos', icon: IoIosSettings },
+    {route: '/bombs', title: 'Bombas', icon: GiElectric},
 ]
 
 const menuItems2: MenuItemData[] = [

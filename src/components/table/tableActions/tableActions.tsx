@@ -1,6 +1,14 @@
+'use client'
 import { LuRefreshCcw } from 'react-icons/lu'
 
-export default function TableActions() {
+interface TableActionsProps {
+    modelName?: string;
+    onAdd?: () => void;
+    onRefresh?: () => void;
+
+}
+
+export default function TableActions({ modelName = '', onAdd = () => {}, onRefresh = () => {}}: TableActionsProps) {
     return (
         <div className="items-center justify-between block sm:flex mb-5">
             <section className="flex items-center mb-4 sm:mb-0">
@@ -11,10 +19,10 @@ export default function TableActions() {
                 </form>
             </section>
             <section className='flex items-center ml-auto space-x-2 sm:space-x-3'>
-                <button className="w-1/2 button-1" type="button">
-                    + Crear proyecto
+                <button className="w-1/2 button-1" type="button" onClick={onAdd}>
+                    + Crear {modelName}
                 </button>
-                <button className="w-1/2 button-1" type="button">
+                <button className="w-1/2 button-1" type="button" onClick={onRefresh}>
                     <LuRefreshCcw className="mr-2"/>
                     Refresh
                 </button>
