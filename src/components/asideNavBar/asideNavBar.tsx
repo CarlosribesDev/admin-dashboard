@@ -2,14 +2,20 @@ import React from 'react'
 import MenuItem from './components/menuItem'
 import { FaHome } from 'react-icons/fa';
 import { IoIosSettings } from "react-icons/io";
-import MenuItemData from './interfaces/menuItem.interface';
 import { GiElectric } from "react-icons/gi";
 import { AiOutlineFundProjectionScreen } from "react-icons/ai"
 import { FcSupport } from "react-icons/fc";
+import { IconType } from 'react-icons';
+
+interface MenuItemData {
+    route: string,
+    title: string,
+    icon: IconType,
+}
 
 const menuItems: MenuItemData[] = [
     {route: '/', title: 'Home', icon: FaHome},
-    {route: '/', title: 'Proyectos', icon: AiOutlineFundProjectionScreen},
+    {route: '/project', title: 'Proyectos', icon: AiOutlineFundProjectionScreen},
     {route: '/', title: 'Mecanismos', icon: IoIosSettings },
     {route: '/', title: 'Bombas', icon: GiElectric},
 ]
