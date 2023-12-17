@@ -3,3 +3,6 @@
 @tailwind utilities;
 
 
+.bg-color-1 {
+    @apply bg-gray-50;
+}
