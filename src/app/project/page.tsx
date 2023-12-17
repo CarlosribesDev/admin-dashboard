@@ -1,5 +1,5 @@
-import { DataTable, Header, TableActions } from '@/components'
-import React from 'react'
+import { Header } from '@/components/layaout'
+import { DataTable, TableActions } from '@/components/table'
 import { AiOutlineFundProjectionScreen } from "react-icons/ai"
 
 
@@ -13,7 +13,7 @@ const data = [
         name: 'Project 1',
         description: 'Description 1',
         startDate: '2021-08-01',
-        endDate: '2021-08-01',
+        endDate: null,
         status: 'Activo',
     },
     {
@@ -21,7 +21,7 @@ const data = [
         name: 'Project 2',
         description: 'Description 2',
         startDate: '2021-08-01',
-        endDate: '2021-08-01',
+        endDate: null,
         status: 'Activo',
     },
     {
@@ -29,7 +29,7 @@ const data = [
         name: 'Project 3',
         description: 'Description 3',
         startDate: '2021-08-01',
-        endDate: '2021-08-01',
+        endDate: null,
         status: 'Activo',
     },
     {
@@ -86,7 +86,7 @@ const data = [
 export default function ProjectPage() {
     return (
         <div>
-            <div className="p-8 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5 dark:bg-gray-800 dark:border-gray-700">
+            <div className="p-8 bg-color-1 block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5 dark:bg-gray-800 dark:border-gray-700">
                 <div className="w-full mb-1">
                     <Header title="Proyectos" iconHeader={AiOutlineFundProjectionScreen}/>
                     <TableActions/>

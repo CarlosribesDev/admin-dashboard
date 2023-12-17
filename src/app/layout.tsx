@@ -1,6 +1,6 @@
 'use client'
 import '../styles/globals.css'
-import { NavBar, SideBar, Footer } from '@/components'
+import { NavBar, SideBar, Footer } from '@/components/layaout'
 import { useState } from 'react'
 import { GlobalContext } from '@/context/globalContex'
 
@@ -24,11 +24,11 @@ export default function RootLayout({
                 <title>Admin</title>
             </head>
             <GlobalContext.Provider value={{ isOpen, toggleMenu }}>
-                <body className='bg-gray-50 dark:bg-gray-800 scrollbar scrollbar-w-3 scrollbar-thumb-rounded-[0.25rem] scrollbar-track-slate-200 scrollbar-thumb-gray-400 dark:scrollbar-track-gray-900 dark:scrollbar-thumb-gray-700'>
+                <body className='bg-color-1 scrollbar scrollbar-w-3'>
                     <SideBar />
                     <NavBar/>
-                    <div className="flex pt-16 overflow-hidden bg-gray-50 ">
-                        <div className="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64  min-h-screen">
+                    <div className="flex pt-16 overflow-hidden ">
+                        <div className="relative w-full h-full overflow-y-auto lg:ml-64 min-h-screen">
                             {children}
                             <Footer/>
                         </div>

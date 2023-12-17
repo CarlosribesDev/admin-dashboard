@@ -4,5 +4,27 @@
 
 
 .bg-color-1 {
+    @apply bg-white;
+}
+
+.bg-color-2 {
     @apply bg-gray-50;
+}
+
+@layer utilities {
+    .button {
+        @apply inline-flex items-center justify-center;
+        @apply font-bold py-2 px-4 rounded-lg;
+        @apply focus:ring-4 sm:w-auto;
+    }
+
+    .button-1 {
+        @apply button;
+        @apply bg-blue-500 hover:bg-blue-700 text-white;
+    }
+
+    .button-2 {
+        @apply button;
+        @apply bg-red-500 hover:bg-red-700 text-white;
+    }
 }
