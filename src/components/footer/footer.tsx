@@ -1,5 +1,9 @@
 import React from 'react'
-import FooterLink from './footerLink.interface'
+
+interface FooterLink {
+    tittle: string;
+    url: string;
+}
 
 const footerLinks: FooterLink[] = [
     {

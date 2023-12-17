@@ -2,7 +2,8 @@
 
 export default function Home() {
     return (
-   
-        <h1>Holaaaaa</h1>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+            <h1 style={{ fontSize: '3em' }}>¡Bienvenido!</h1>
+        </div>
     )
 }
