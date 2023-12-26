@@ -19,10 +19,10 @@ export default function TableActions({ modelName = '', onAdd = () => {}, onRefre
                 </form>
             </section>
             <section className='flex items-center ml-auto space-x-2 sm:space-x-3'>
-                <button className="w-1/2 button-1" type="button" onClick={onAdd}>
+                <button className="button-1" type="button" onClick={onAdd}>
                     + Crear {modelName}
                 </button>
-                <button className="w-1/2 button-1" type="button" onClick={onRefresh}>
+                <button className="button-1" type="button" onClick={onRefresh}>
                     <LuRefreshCcw className="mr-2"/>
                     Refresh
                 </button>

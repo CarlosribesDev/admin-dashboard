@@ -4,7 +4,8 @@ import React from 'react'
 export default function CreateProjectModal({isVisible, onClose}: {isVisible: boolean, onClose: () => void}) {
     return (
         <>
-            <div className={`fixed inset-0 bg-black opacity-50 ${isVisible ? 'block' : 'hidden'}`} />
+            {/* <div className={`fixed inset-0 bg-black opacity-50 ${isVisible ? 'block' : 'hidden'}`} /> */}
+            <div className={`fixed inset-0 z-50 h-100 w-100 bg-black opacity-50 ${isVisible ? 'block' : 'hidden'}`}/>
             <div className={`flex items-center justify-center ${isVisible ? '' : 'hidden'} overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0  max-h-full`}>
                 <div className="relative p-4 w-full max-w-md max-h-full">
                     {/* <!-- Modal content --> */}
