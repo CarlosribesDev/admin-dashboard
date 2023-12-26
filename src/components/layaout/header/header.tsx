@@ -6,7 +6,7 @@ export default function Header({ title, iconHeader: IconHeader }: { title: strin
         <header className='mb-5'>
             <div className='flex items-center'>
                 <IconHeader className="w-6 h-6 mr-3 text-gray-400 group-hover:text-gray-500"/>
-                <h1 className="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
+                <h1 className="text-xl font-semibold text-gray-900 sm:text-2xl">
                     {title}
                 </h1>
             </div>
