@@ -2,7 +2,7 @@
 import { Header } from '@/components/layaout'
 import { CreateProjectModal } from '@/components/modal';
 import { DataTable, TableActions } from '@/components/table'
-import { Project } from '@/model';
+import { CreatedProject, Project } from '@/model';
 import { ProjectService } from '@/service';
 import { useEffect, useState } from 'react';
 import { AiOutlineFundProjectionScreen } from "react-icons/ai"
@@ -17,91 +17,16 @@ const columns = [
     { title: 'Estado', maxWidth: '100px' },
 ];
 
-const data: Project[] = [
-    {
-        id: 1,
-        name: 'Project 1',
-        description: 'Description 1',
-        createdDate: '2021-08-01',
-        endDate: '',
-        status: 'Activo',
-    },
-    {
-        id: 2,
-        name: 'Project 2',
-        description: 'Description 2',
-        createdDate: '2021-08-01',
-        endDate: '',
-        status: 'Activo',
-    },
-    {
-        id: 3,
-        name: 'Project 3',
-        description: 'Description 3',
-        createdDate: '2021-08-01',
-        endDate: '',
-        status: 'Activo',
-    },
-    {
-        id: 4,
-        name: 'Project 4',
-        description: 'Description 4',
-        createdDate: '2021-08-01',
-        endDate: '2021-08-01',
-        status: 'Activo',
-    },
-    {
-        id: 5,
-        name: 'Project 5',
-        description: 'Description 5',
-        createdDate: '2021-08-01',
-        endDate: '2021-08-01',
-        status: 'Activo',
-    },
-    {
-        id: 6,
-        name: 'Project 6',
-        description: 'Description 6',
-        createdDate: '2021-08-01',
-        endDate: '2021-08-01',
-        status: 'Activo',
-    },
-    {
-        id: 7,
-        name: 'Project 7',
-        description: 'Description 7',
-        createdDate: '2021-08-01',
-        endDate: '2021-08-01',
-        status: 'Activo',
-    },
-    {
-        id: 8,
-        name: 'Project 8',
-        description: 'Description 8',
-        createdDate: '2021-08-01',
-        endDate: '2021-08-01',
-        status: 'Activo',
-    },
-    {
-        id: 9,
-        name: 'Project 9',
-        description: 'Description 9',
-        createdDate: '2021-08-01',
-        endDate: '2021-08-01',
-        status: 'Activo',
-    }
-]
-
-
 export default function ProjectPage() {
 
     const [projects, setProjects] = useState<Project[]>([]);
 
+    const updateProjects = (): void => {
+        ProjectService.getAll().then((res) => setProjects(res));
+    };
+
     useEffect(() => { 
-        ProjectService.getAll().then((res) => {
-            console.log(res);
-            setProjects(res);
-        });
+        updateProjects();
     }, [])
 
 
@@ -111,7 +36,7 @@ export default function ProjectPage() {
     }
 
     const onRefresh = () => {
-        console.log('refrescar proyectos');
+        updateProjects();
     }
 
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -120,6 +45,12 @@ export default function ProjectPage() {
         setIsModalVisible(false);
     }
 
+    const onSubmit = (project: CreatedProject) => {
+        ProjectService.create(project).then(() => {
+            updateProjects();
+            setIsModalVisible(false);
+        });
+    }
 
     return (
         <div>
@@ -127,7 +58,7 @@ export default function ProjectPage() {
                 <div className="w-full mb-1">
                     <Header title="Proyectos" iconHeader={AiOutlineFundProjectionScreen}/>
                     <TableActions modelName='Proyecto' onAdd={onAdd} onRefresh={onRefresh}/>
-                    <CreateProjectModal isVisible={isModalVisible} onClose={onCloseModal}/>
+                    <CreateProjectModal isVisible={isModalVisible} onClose={onCloseModal} onSubmit={onSubmit}/>
                     <DataTable columns={columns} data={projects}/>
                 </div>
             </div>

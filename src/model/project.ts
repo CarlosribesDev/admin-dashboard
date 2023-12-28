@@ -1,4 +1,4 @@
-export default class Project {
+export class Project {
     id: number;
     name: string;
     description: string;
@@ -13,5 +13,15 @@ export default class Project {
         this.status = status;
         this.createdDate = createdDate;
         this.endDate = endDate;
+    }
+}
+
+export class CreatedProject {
+    name: string;
+    description: string;
+ 
+    constructor(name: string, description: string) {
+        this.name = name;
+        this.description = description;
     }
 }

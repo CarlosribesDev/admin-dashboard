@@ -1,3 +1,3 @@
-import  Project  from './project';
+import  { Project, CreatedProject }  from './project';
 
-export { Project }
+export { Project, CreatedProject }

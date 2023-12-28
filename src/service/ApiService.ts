@@ -36,6 +36,16 @@ export default class ApiServiceBase<T> {
             return false;
         }
     }
+
+    async create(data: Partial<T>): Promise<T | null> {
+        try {
+            const response = await axios.post(`${this.basePath}`, data);
+            return response.data as T;
+        } catch (error) {
+            console.error('Error updating data:', error);
+            return null;
+        }
+    }
   
     async update(data: Partial<T>): Promise<T | null> {
         try {
