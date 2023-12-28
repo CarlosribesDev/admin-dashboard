@@ -8,9 +8,11 @@ type Column = {
 interface DataTableProps {
     columns: Column[];
     data: any[];
+    onEdit?: (data: any) => void;
+    onDelete?: (data: any) => void;
 }
 
-export default function DataTable({ columns, data }: DataTableProps) {
+export default function DataTable({ columns, data, onDelete, onEdit }: DataTableProps) {
     return (
         <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-gray-50">
@@ -39,11 +41,11 @@ export default function DataTable({ columns, data }: DataTableProps) {
                             </td>
                         ))}
                         <td className="px-8 py-4 whitespace-nowrap">
-                            <button className="button-1 mr-4">
+                            <button className="button-1 mr-4" onClick={() => onEdit && onEdit(item)}>
                                 <FaEdit className="mr-1" />
                                 Editar
                             </button>
-                            <button className="button-2">
+                            <button className="button-2" onClick={() => onDelete && onDelete(item)}>
                                 <FaTrash className="mr-1" />
                                 Borrar
                             </button>

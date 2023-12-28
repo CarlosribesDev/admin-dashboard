@@ -1,12 +1,34 @@
 'use client'
 
-import { CreatedProject } from '@/model';
-import React, { useState } from 'react'
+import { CreatedProject, Project } from '@/model';
+import React, { useEffect, useState } from 'react'
 
-export default function CreateProjectModal({isVisible, onClose, onSubmit }: {isVisible: boolean, onClose: () => void, onSubmit: (project: CreatedProject) => void}) {
+
+interface Props {
+    isVisible: boolean;
+    onClose: () => void;
+    onSubmitCreate: (project: CreatedProject) => void;
+    onSubmitEdit: (project: Project) => void;
+    data: Project | null;
+}
+
+export default function CreateProjectModal({isVisible, onClose, onSubmitCreate, onSubmitEdit, data }: Props) {
     const [projectName, setProjectName] = useState('');
     const [projectDescription, setProjectDescription] = useState('');
 
+    useEffect(() => {
+        console.log('entrandooooo');
+        
+        if(data) {
+            console.log('set data');
+            setProjectName(data.name);
+            setProjectDescription(data.description);
+        } else {
+            console.log('borrar data');
+            setProjectName('');
+            setProjectDescription('');
+        }
+    },[data])
 
     const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setProjectName(e.target.value);
@@ -18,8 +40,14 @@ export default function CreateProjectModal({isVisible, onClose, onSubmit }: {isV
 
     const handleFormSubmit = (event: React.FormEvent) => {
         event.preventDefault();
-        const newProject = new CreatedProject(projectName, projectDescription);
-        onSubmit(newProject);
+        if(!data) {
+            const newProject = new CreatedProject(projectName, projectDescription);
+            onSubmitCreate(newProject);
+            return;
+        }
+
+        const project = new Project(data.id, projectName, projectDescription, data.status, data.startDate, data.endDate);
+        onSubmitEdit(project);
     };
 
     return (
@@ -43,7 +71,7 @@ export default function CreateProjectModal({isVisible, onClose, onSubmit }: {isV
                                     <input 
                                         type="text" 
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 block w-full p-2.5" 
-                                        placeholder="Type product name"
+                                        placeholder="Nombre del proyecto"
                                         value={projectName}
                                         onChange={handleNameChange}
                                     />
@@ -53,7 +81,7 @@ export default function CreateProjectModal({isVisible, onClose, onSubmit }: {isV
                                     <input 
                                         type="text"
                                         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 block w-full p-2.5" 
-                                        placeholder="Type product name"
+                                        placeholder="Descripcion del proyecto"
                                         value={projectDescription}
                                         onChange={handleDescriptionChange}
                                     />
@@ -61,7 +89,7 @@ export default function CreateProjectModal({isVisible, onClose, onSubmit }: {isV
                             </div>
                             <div className='flex justify-between mt-6'>
                                 <button type="submit" className="button-1" onClick={handleFormSubmit}>
-                                    Crear
+                                    { data ? 'Editar' : 'Crear' }
                                 </button>
                                 <button type="submit" className="button-2" onClick={onClose}>
                                     Cancelar
