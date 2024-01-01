@@ -2,10 +2,12 @@
 import { Header } from '@/components/layaout'
 import { CreateProjectModal } from '@/components/modal';
 import { DataTable, TableActions } from '@/components/table'
+import { PopupType, usePopup } from '@/hooks';
 import { CreatedProject, Project } from '@/model';
 import { ProjectService } from '@/service';
 import { useEffect, useState } from 'react';
 import { AiOutlineFundProjectionScreen } from "react-icons/ai"
+
 
 
 const columns = [
@@ -22,6 +24,7 @@ export default function ProjectPage() {
     const [projects, setProjects] = useState<Project[]>([]);
     const [project, setProject] = useState<Project | null>(null);
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const { showPopup } = usePopup();
 
     const updateProjects = (): void => {
         ProjectService.getAll().then((res) => setProjects(res));
@@ -60,6 +63,7 @@ export default function ProjectPage() {
         ProjectService.create(project).then(() => {
             updateProjects();
             setIsModalVisible(false);
+            showPopup(PopupType.SUCCESS, 'Proyecto creado', 'El proyecto se ha creado correctamente');
         });
     }
 
@@ -67,6 +71,7 @@ export default function ProjectPage() {
         ProjectService.update(project).then(() => {
             updateProjects();
             setIsModalVisible(false);
+            showPopup(PopupType.SUCCESS, 'Proyecto actualizado', 'El proyecto se ha actualizado correctamente');
         });
     }
 

@@ -1,3 +1,3 @@
-import ProjectService from './ProjectApiService';
+import ProjectService from './api/ProjectApiService';
 
 export { ProjectService };
