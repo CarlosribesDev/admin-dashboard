@@ -8,8 +8,6 @@ import { ProjectService } from '@/service';
 import { useEffect, useState } from 'react';
 import { AiOutlineFundProjectionScreen } from "react-icons/ai"
 
-
-
 const columns = [
     { title: 'Codigo', maxWidth: '70px' },
     { title: 'Nombre', maxWidth: '300px' },

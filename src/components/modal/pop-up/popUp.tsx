@@ -1,5 +1,5 @@
 import { PopupType, usePopup } from '@/hooks';
-import React from 'react'
+import { useState, useEffect } from 'react'
 import { IconType } from 'react-icons'
 import { FaCheckCircle,FaInfoCircle  } from "react-icons/fa";
 import { IoIosWarning } from "react-icons/io";
@@ -22,6 +22,20 @@ const colorMap = new Map<PopupType, string>([
 
 export const Popup = () => {
     const { popup, hidePopup } = usePopup();
+    const [isActive, setIsActive] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
+
+    useEffect(() => {
+        if (popup) {
+            setIsVisible(true);
+            // Activar la animación después de un breve retraso
+            setTimeout(() => setIsActive(true), 10);
+        } else {
+            setIsActive(false);
+            // Esperar a que termine la animación para remover el componente del DOM
+            setTimeout(() => setIsVisible(false), 300);
+        }
+    }, [popup]);
 
     if (!popup) return null;
 
@@ -31,7 +45,7 @@ export const Popup = () => {
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center">
             <div className="fixed inset-0 bg-black opacity-50" onClick={hidePopup}></div>
-            <div className="bg-white p-5 rounded-lg shadow-xl z-50">
+            <div className={`bg-white p-5 rounded-lg shadow-xl z-50 transition-all duration-1000 transform-gpu ${isActive ? 'scale-100 opacity-100' : 'scale-50 opacity-0'}`}>
                 <header className='flex flex-row justify-between items-center w-full mb-4 border-b-2'>
                     <h2 className="text-2xl font-semibold pb-2">{popup.title} </h2>
                     <Icon className={`w-8 h-8 pb-2 ${iconColorClass}`} />
