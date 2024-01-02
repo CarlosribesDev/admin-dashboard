@@ -44,8 +44,11 @@ export default function ProjectPage() {
     }
 
     const onDelete = (project: Project) => {
-        ProjectService.deleteById(project.id).then(() => {
-            updateProjects();
+        showPopup(PopupType.WARNING, 'Borrar proyecto', `Se va a borrar el proyecto seleccionado: ${project.id}. ¿Desea continuar?`, () => {
+            ProjectService.deleteById(project.id).then(() => {
+                updateProjects();
+                showPopup(PopupType.SUCCESS, 'Proyecto borrado', 'El proyecto se ha borrado correctamente');
+            });
         });
     }
 

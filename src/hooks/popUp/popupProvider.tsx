@@ -5,8 +5,8 @@ import { Popup, PopupType } from "./popupTypes";
 export const PopupProvider = ({ children }: { children: ReactNode }) => {
     const [popup, setPopup] = useState<Popup | null>(null);
 
-    const showPopup = (type: PopupType, title: string, message: string) => {
-        setPopup({ type, title, message });
+    const showPopup = (type: PopupType, title: string, message: string, onSubmit?: () => void) => {
+        setPopup({ type, title, message, onSubmit });
     };
 
     const hidePopup = () => {

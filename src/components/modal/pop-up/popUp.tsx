@@ -1,4 +1,5 @@
 import { PopupType, usePopup } from '@/hooks';
+import { on } from 'events';
 import { useState, useEffect } from 'react'
 import { IconType } from 'react-icons'
 import { FaCheckCircle,FaInfoCircle  } from "react-icons/fa";
@@ -48,17 +49,37 @@ export const Popup = () => {
             <div className={`bg-white p-5 rounded-lg shadow-xl z-50 transition-all duration-1000 transform-gpu ${isActive ? 'scale-100 opacity-100' : 'scale-50 opacity-0'}`}>
                 <header className='flex flex-row justify-between items-center w-full mb-4 border-b-2'>
                     <h2 className="text-2xl font-semibold pb-2">{popup.title} </h2>
-                    <Icon className={`w-8 h-8 pb-2 ${iconColorClass}`} />
+                    <Icon className={`w-10 h-10 pb-2 ${iconColorClass}`} />
                 </header>
                 <p className="mb-4">{popup.message}</p>
-                <div className="flex justify-center">
-                    <button 
-                        onClick={hidePopup} 
-                        className="button-1"
-                    >
-                        Aceptar
-                    </button>
-                </div>
+                
+                { popup.onSubmit ? 
+                    <div className="flex justify-between p-4">
+                        <button 
+                            onClick={popup.onSubmit} 
+                            className="button-1"
+                        >
+                            Aceptar
+                        </button>
+                        <button 
+                            onClick={hidePopup} 
+                            className="button-2"
+                        >
+                            Cancelar
+                        </button>
+                    </div>
+                    :
+                    <div className="flex justify-center">
+                        <button 
+                            onClick={hidePopup} 
+                            className="button-1"
+                        >
+                            Aceptar
+                        </button>
+                    </div>
+                }
+                    
+                
             </div>
         </div>
     );
